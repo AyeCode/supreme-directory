@@ -1,7 +1,5 @@
 jQuery(document).ready(function () {
 
-
-
     if ( jQuery( "a.sd-my-account-link" ).length ) {
         jQuery('a.sd-my-account-link').click(function (e) {
             e.preventDefault();
@@ -40,7 +38,7 @@ jQuery(document).ready(function () {
         jQuery("body").toggleClass('sd-show-search');
 
         if ( typeof geodir_reposition_compass == 'function' ) {
-                    geodir_reposition_compass();
+            geodir_reposition_compass();
         }
 
     });
@@ -67,6 +65,13 @@ jQuery(document).ready(function () {
         sd_archive_container_max_height();
     });
 
+    if (jQuery(".featured-area .geodir-cat-list-tax").length) {
+        var val = jQuery(".featured-area .geodir-cat-list-tax option:first").val();
+        var postType = jQuery('.featured-area .search_by_post').val();
+        if( val != postType ){
+            jQuery('body').trigger('geodir_setup_search_form');
+        }
+    }
 });
 
 function sd_archive_container_max_height(){
