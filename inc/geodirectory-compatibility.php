@@ -252,10 +252,8 @@ function sd_location_subtitle($subtitle){
 
 add_filter('sd_featured_image','sd_location_manager_image');
 function sd_location_manager_image($image){
-
-    if(class_exists('GeoDir_Location_SEO') && geodir_is_page('location')){
+    if(class_exists('GeoDir_Location_SEO') && ( geodir_is_page('location') || geodir_is_page('archive') )){
         $location_seo = GeoDir_Location_SEO::get_location_seo();
-        //print_r($location_seo);
         if(!empty($location_seo->image)){
             $full_image_url = wp_get_attachment_image_src($location_seo->image, 'full');
             $image = $full_image_url[0];
