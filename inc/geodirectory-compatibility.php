@@ -443,12 +443,14 @@ if(0){ ?><script><?php }?>
                 e.preventDefault();
                 sd_scroll_to_reviews();
             });
-
-
         });
 
         function sd_scroll_to_reviews() {
-            jQuery(".geodir-tab-head [href='#reviews']")[0].click();
+            if (jQuery(".geodir-tab-head [href='#reviews']").length) {
+                jQuery(".geodir-tab-head [href='#reviews']").trigger('click'); /* AUI */
+            } else {
+                jQuery('.geodir-tab-head [data-tab="#reviews"]').closest('dd').trigger('click');
+            }
 
             setTimeout(function() {
                 jQuery('html,body').animate({
