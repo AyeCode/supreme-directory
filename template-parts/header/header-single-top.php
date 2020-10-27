@@ -105,7 +105,6 @@ do_action( 'sd-detail-details-before' ); ?>
 			do_action( 'sd_detail_before_cat_links' );
 
 			// Categories
-			$cat_shortcode = '[gd_categories title_tag="h4" post_type="0" hide_count="1" sort_by="count" max_level="1" max_count="all" max_count_child="all"]';
 			$cat_shortcode = "[gd_categories title=''  post_type='0'  cpt_title='false'  title_tag='h6'  cpt_ajax='false'  filter_ids=''  hide_empty='true'  hide_count='false'  hide_icon='false'  use_image='false'  cpt_left='false'  sort_by='count'  max_level='1'  max_count='all'  max_count_child='all'  no_cpt_filter='false'  no_cat_filter='false'  design_type=''  card_padding_inside='1'  card_color=''  icon_color=''  icon_size=''  bg=''  mt=''  mr=''  mb='0'  ml=''  pt=''  pr=''  pb=''  pl=''  border=''  rounded=''  rounded_size=''  shadow='' ]";
 			$cat_shortcode = apply_filters( 'sd_details_output_cat_links_shortcode',$cat_shortcode);
 			$cat_links = '<div class="sd-detail-cat-links mt-3">';
