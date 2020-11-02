@@ -423,7 +423,7 @@ function sd_remove_bp_home_class( $wp_classes, $extra_classes ) {
  * @since 1.0.4
  */
 function sd_feature_area_title_meta(){
-    global $pid;
+    global $pid, $post;
     $title_class = "text-white display-3";
     $pid = $pid ? $pid : get_the_ID();
     $subtitle = '';
@@ -432,7 +432,12 @@ function sd_feature_area_title_meta(){
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php single_cat_title(); ?></h1>
         <?php
-    }elseif (is_singular()) {
+    } if ( function_exists( 'geodir_is_page' ) && geodir_is_page( 'archive' ) ) {
+        $page_id = geodir_cpt_template_page('page_archive',$post->post_type);
+        ?>
+        <h1 class="entry-title <?php echo $title_class ;?>"><?php echo get_the_title( $page_id ); ?></h1>
+        <?php
+    } elseif (is_singular()) {
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php the_title(); ?></h1>
         <?php
