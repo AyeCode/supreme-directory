@@ -31,6 +31,9 @@ No, this is optional but recommended.
 
 == Changelog ==
 
+= 2.1.0.1 =
+* Add fix for Featured area page title issue for Geodirectory pages - FIXED
+
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED
 * Theme changed to use bootstrap styles, this is a very big change and may need some manual changes - WARNING
