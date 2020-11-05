@@ -31,6 +31,13 @@ No, this is optional but recommended.
 
 == Changelog ==
 
+= 2.1.0.1 =
+* Archive resizer not displaying due to enqueue too early - FIXED
+* GD category widget loses styles on CPT change in featured area - FIXED
+* Featured area on homepage not full height - FIXED
+* Paralax image JS sometimes firing too early - FIXED
+* GD Archive pages can have the wrong title if different page template used - FIXED
+
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED
 * Theme changed to use bootstrap styles, this is a very big change and may need some manual changes - WARNING

@@ -162,7 +162,7 @@ function sd_feature_area_gd(){
 
         if(!$shortcode_content){
 //            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories title_tag="hide" post_type="0" cpt_ajax="1" hide_count="1" sort_by="count" max_level="0" max_count="6" hide_empty="1"]');
-            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories post_type="0" max_level="0" max_count="6" max_count_child="all" title_tag="h4" design_type="icon-top" icon_size="box-small" sort_by="count" mb="3" row_items="6" hide_empty="true" card_padding_inside="1"  hide_count="true" card_color=\'outline-light\']');
+            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories post_type="0" cpt_ajax="1" max_level="0" max_count="6" max_count_child="0" title_tag="h4" design_type="icon-top" icon_size="box-small" sort_by="count" mb="3" row_items="6" hide_empty="true" card_padding_inside="1"  hide_count="true" card_color=\'outline-light\']');
         }
         echo do_shortcode($shortcode_content);
         if(!is_front_page()){
@@ -402,11 +402,12 @@ function gd_sd_enqueue_script(){
     
     wp_add_inline_script( 'geodir', gd_sd_script() ); 
 }
-add_action('wp_enqueue_scripts', 'gd_sd_enqueue_script');
+//add_action('wp_enqueue_scripts', 'gd_sd_enqueue_script');
+add_action('wp_footer', 'gd_sd_enqueue_script');
 
 function gd_sd_script(){
-ob_start();
-if(0){ ?><script><?php }?>
+//ob_start();
+if(1){ ?><script><?php }?>
         document.addEventListener("DOMContentLoaded", function(event) {
             jQuery("body").on("geodir_setup_search_form", function() {
                 if (jQuery(".featured-area .geodir-cat-list-tax").length) {
@@ -467,35 +468,37 @@ if(0){ ?><script><?php }?>
                 $sd_sidebar_position = 'left';
             }
 
-            if (jQuery(".featured-img").length) {
-                var windowHeight = screen.height;
-                var parallax = document.querySelectorAll(".featured-img"),
-                    speed = 0.6;
-                var bPos = jQuery(".featured-img").css("background-position");
-                var arrBpos = bPos.split(' ');
-                var originalBpos = arrBpos[1];
-                var fetHeight = parseInt(jQuery(".featured-area").css("height"));
-                var fetAreHeight = jQuery(".featured-area").offset().top + fetHeight;
+            document.addEventListener("DOMContentLoaded", function() {
+                if (jQuery(".featured-img").length) {
+                    var windowHeight = screen.height;
+                    var parallax = document.querySelectorAll(".featured-img"),
+                        speed = 0.6;
+                    var bPos = jQuery(".featured-img").css("background-position");
+                    var arrBpos = bPos.split(' ');
+                    var originalBpos = arrBpos[1];
+                    var fetHeight = parseInt(jQuery(".featured-area").css("height"));
+                    var fetAreHeight = jQuery(".featured-area").offset().top + fetHeight;
 
-                window.onscroll = function() {
-                    var f = 0;
-                    [].slice.call(parallax).forEach(function(el, i) {
-                        if (f > 1) {
-                            return;
-                        }
-                        var windowYOffset = window.pageYOffset;
-                        originalBpos = parseInt(originalBpos);
-                        var perc = windowYOffset / fetAreHeight + (originalBpos / 100);
-                        //"50% calc("+originalBpos+" - " + (windowYOffset * speed) + "px)"
-                        parallaxPercent = 100 * perc;
-                        if (parallaxPercent > 100) {
-                            parallaxPercent = 100;
-                        }
-                        jQuery(el).css("background-position", "50% " + parallaxPercent + "%");
-                        f++;
-                    });
-                };
-            }
+                    window.onscroll = function() {
+                        var f = 0;
+                        [].slice.call(parallax).forEach(function(el, i) {
+                            if (f > 1) {
+                                return;
+                            }
+                            var windowYOffset = window.pageYOffset;
+                            originalBpos = parseInt(originalBpos);
+                            var perc = windowYOffset / fetAreHeight + (originalBpos / 100);
+                            //"50% calc("+originalBpos+" - " + (windowYOffset * speed) + "px)"
+                            parallaxPercent = 100 * perc;
+                            if (parallaxPercent > 100) {
+                                parallaxPercent = 100;
+                            }
+                            jQuery(el).css("background-position", "50% " + parallaxPercent + "%");
+                            f++;
+                        });
+                    };
+                }
+            });
 
             jQuery("#sd-home-scroll").click(function(event) {
                 event.preventDefault();
@@ -515,7 +518,7 @@ if(0){ ?><script><?php }?>
                 if ($sd_sidebar_position == 'left') {
                     $offset = 'ml-n5';
                 }
-                jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="Drag to resize" data-toggle="tooltip"  style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;"><i class="fas fa-arrows-alt-h"></i></span>');
+                jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="Drag to resize" data-toggle="tooltip"  style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;z-index: 1050;"><i class="fas fa-arrows-alt-h"></i></span>');
                 sd_position_archive_resizer($listings_container);
             }
 
@@ -571,8 +574,8 @@ if(0){ ?><script><?php }?>
             });
         }
 
-        <?php if(0){ ?></script><?php }
+        <?php if(1){ ?></script><?php }
 
-    return ob_get_clean();
+//    return ob_get_clean();
     
 }

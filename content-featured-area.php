@@ -21,6 +21,7 @@ if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function
 	$pid        = $pfp_post->ID;
 	$jumbotron_size = '';
 	$featured_image = '';
+	$full_height = '';
 	if ( function_exists( 'geodir_is_page' ) && geodir_is_page( 'single' ) && isset( $pfp_post->post_type ) ) {
 		$page_id = geodir_cpt_template_page( 'page_details', $pfp_post->post_type );
 		if ( $page_id ) {
@@ -32,8 +33,10 @@ if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function
 	if ( empty( $featured_type ) ) {
 		if ( function_exists( 'geodir_is_page' ) && geodir_is_page( 'location' ) ) {
 			$featured_type = 'location';
+			$full_height = 'min-vh-100';
 		} elseif ( is_front_page() ) {
 			$featured_type = 'location';
+			$full_height = 'min-vh-100';
 		} else {
 			$featured_type = 'parallax';
 		}
@@ -61,7 +64,7 @@ if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function
 	}
 	?>
 	<header class="featured-area">
-		<div class="jumbotron jumbotron-fluid <?php echo $jumbotron_size;?> overlay overlay-black mb-0 bg-dark position-relative " id="sd-featured-imgx">
+		<div class="jumbotron jumbotron-fluid <?php echo $jumbotron_size;?> <?php echo $full_height;?> overlay overlay-black mb-0 bg-dark position-relative " id="sd-featured-imgx">
 			<div id="sd-featured-img" class="featured-img w-100 position-absolute h-100 overlay overlay-black " style="top:0;left:0;background-position:50% 20%;background-repeat: no-repeat;background-size: cover;" ></div>
 			<div class="container text-center text-white h-100">
 				<?php

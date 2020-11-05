@@ -427,12 +427,14 @@ function sd_feature_area_title_meta(){
     $title_class = "text-white display-3";
     $pid = $pid ? $pid : get_the_ID();
     $subtitle = '';
+    
+    ob_start();
     if (is_category()) {
         $pid = '';
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php single_cat_title(); ?></h1>
         <?php
-    }elseif (is_singular()) {
+    } elseif (is_singular()) {
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php the_title(); ?></h1>
         <?php
@@ -448,13 +450,19 @@ function sd_feature_area_title_meta(){
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php echo get_the_title( get_option('page_for_posts', true) ); ?></h1>
         <?php
+    } elseif (is_archive()) {
+        ?>
+        <h1 class="entry-title <?php echo $title_class ;?>"><?php the_archive_title(); ?></h1>
+        <?php
     } else {
-        /*<!-- <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>-->*/
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php the_title(); ?></h1>
         <?php
     }
-
+    
+    $title = ob_get_clean();
+    echo apply_filters('sd_featured_area_title', $title);
+    
 	if ( is_search() ) {
 		$subtitle = '';
 	} elseif( $pid ) {
@@ -634,3 +642,13 @@ function sd_header_extra_class( $class ){
     return $class;
 }
 add_filter('dt_header_extra_class','sd_header_extra_class');
+
+add_action( 'dt_css', 'sd_css' );
+
+function sd_css(){
+    if(0){ ?><style><?php } ?>
+.featured-area .gd-categories-widget .geodir-cat-list-tax{
+    display: none;
+}
+		<?php if(0){ ?></style><?php }
+}
