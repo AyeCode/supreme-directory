@@ -38,6 +38,7 @@ if ( is_home() && get_option( 'page_for_posts' ) ) {
 		the_posts_pagination( array(
 			'prev_text' => __( 'Previous', 'supreme-directory' ),
 			'next_text' => __( 'Next', 'supreme-directory' ),
+			'class' => 'w-100'
 		) );
 		?>
 	</div>
