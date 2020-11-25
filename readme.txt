@@ -37,6 +37,7 @@ No, this is optional but recommended.
 * Featured area on homepage not full height - FIXED
 * Paralax image JS sometimes firing too early - FIXED
 * GD Archive pages can have the wrong title if different page template used - FIXED
+* Blog page is not responsive on small screen device - FIXED
 
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED

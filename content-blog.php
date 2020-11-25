@@ -5,20 +5,15 @@ if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned
 	$full_image_url[0] = SD_DEFAULT_FEATURED_IMAGE;
 }
 ?>
-<article <?php post_class('col-4'); ?>>
-
-	<div class="card bg-dark overlay overlay-black text-white shadow-sm border-0">
-		<img class="card-img" src="<?php echo esc_url( $full_image_url[0] ); ?>" alt="<?php the_title(); ?>">
-		<div class="card-img-overlay d-flex align-items-center text-center">
-			<div class="card-body">
-				<a href="<?php the_permalink(); ?>" class="text-white"><h3 class="card-title text-white"><?php the_title(); ?></h3></a>
-				<p class="card-text text-white">
-					<?php directory_theme_entry_meta('text-white'); //supreme_entry_meta(); ?>
-				</p>
-				<a href="<?php the_permalink(); ?>" class="btn btn-light btn-round btn-sm"><?php _e("View Post","supreme-directory"); ?></a>
-			</div>
+<article <?php post_class( 'col-md-4 p-3' ); ?>>
+	<div class="card bg-white border-light p-3 rounded">
+		<a href="<?php the_permalink(); ?>"><img class="card-img" src="<?php echo esc_url( $full_image_url[0] ); ?>" alt="<?php the_title(); ?>"></a>
+		<div class="card-body p-0 pt-3">
+			<a href="<?php the_permalink(); ?>" class="card-title h4"><?php the_title(); ?></a>
+			<p class="card-text mt-3">
+				<?php directory_theme_entry_meta( 'text-dark' ); //supreme_entry_meta(); ?>
+			</p>
+			<a href="<?php the_permalink(); ?>" class="btn btn-dark btn-round btn-sm"><?php _e("View Post","supreme-directory"); ?></a>
 		</div>
 	</div>
-
 </article>
-
