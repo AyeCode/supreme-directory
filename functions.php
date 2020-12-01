@@ -501,7 +501,7 @@ add_filter( 'body_class', 'sd_add_sd_home_class' );
 function sd_feature_area(){
 
     if (is_front_page()) {
-        echo '<div class="home-more h2"  id="sd-home-scroll" ><a href="#sd-home-scroll" class="text-white"><i class="fas fa-chevron-down"></i></a></div>';
+        echo '<div class="home-more h2"  id="sd-home-scroll" ><a href="#sd-home-scroll" class="text-white" aria-label="' . esc_attr__( 'Main Content', 'supreme-directory' ) . '"><i class="fas fa-chevron-down"></i></a></div>';
     }
 }
 add_action('sd_feature_area','sd_feature_area',15);
