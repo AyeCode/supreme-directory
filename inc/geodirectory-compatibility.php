@@ -162,7 +162,7 @@ function sd_feature_area_gd(){
 
         if(!$shortcode_content){
 //            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories title_tag="hide" post_type="0" cpt_ajax="1" hide_count="1" sort_by="count" max_level="0" max_count="6" hide_empty="1"]');
-            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories post_type="0" cpt_ajax="1" max_level="0" max_count="6" max_count_child="0" title_tag="h4" design_type="icon-top" icon_size="box-small" sort_by="count" mb="3" row_items="6" hide_empty="true" card_padding_inside="1"  hide_count="true" card_color=\'outline-light\']');
+            $shortcode_content = apply_filters('sd_featured_area_content','[gd_search][gd_categories post_type="0" cpt_ajax="1" max_level="0" max_count="6" max_count_child="0" title_tag="h4" design_type="icon-top" icon_size="box-small" sort_by="count" mb="3" row_items="6" hide_empty="true" card_padding_inside="1"  hide_count="true" card_color="outline-light"]');
         }
         echo do_shortcode($shortcode_content);
         if(!is_front_page()){
