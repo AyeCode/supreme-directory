@@ -38,6 +38,8 @@ No, this is optional but recommended.
 * Paralax image JS sometimes firing too early - FIXED
 * GD Archive pages can have the wrong title if different page template used - FIXED
 * Blog page is not responsive on small screen device - FIXED
+* Header and menu should be full width even if container set to contain content -  CHANGED
+* Page with transparent header should have background on mobile menu open - FIXED
 
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED
