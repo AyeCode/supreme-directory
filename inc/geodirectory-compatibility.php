@@ -312,7 +312,7 @@ add_filter( 'sd_archive_gd_map_shortcode', 'sd_archive_gd_map_shortcode', 10, 1 
  */
 function sd_geodir_search_page_featured_area_title( $title ) {
 	if ( geodir_is_page( 'search' ) ) {
-		$title = the_title( '', '', false );
+		$title = get_the_title(geodir_search_page_id());
 	}
 
 	return $title;
