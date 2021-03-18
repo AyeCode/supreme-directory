@@ -42,6 +42,7 @@ No, this is optional but recommended.
 * Page with transparent header should have background on mobile menu open - FIXED
 * Click on Write a Review button not scrolls to reviews tab for non bootstrap style - FIXED
 * Author actions are not visible to non admin users - FIXED
+* GD Search pages featured area title shows first post title - FIXED
 
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED
