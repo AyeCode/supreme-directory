@@ -40,6 +40,8 @@ No, this is optional but recommended.
 * Blog page is not responsive on small screen device - FIXED
 * Header and menu should be full width even if container set to contain content -  CHANGED
 * Page with transparent header should have background on mobile menu open - FIXED
+* Click on Write a Review button not scrolls to reviews tab for non bootstrap style - FIXED
+* Author actions are not visible to non admin users - FIXED
 
 = 2.1.0.0 =
 * Changes for AyeCode UI compatibility - CHANGED
