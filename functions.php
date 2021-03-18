@@ -429,7 +429,7 @@ function sd_feature_area_title_meta(){
     $subtitle = '';
     
     ob_start();
-    if (is_category()) {
+    if (is_category() || is_tag()) {
         $pid = '';
         ?>
         <h1 class="entry-title <?php echo $title_class ;?>"><?php single_cat_title(); ?></h1>
