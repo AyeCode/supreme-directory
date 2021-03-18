@@ -49,7 +49,7 @@ do_action( 'sd-detail-details-before' ); ?>
 			<?php
 
 			// edit link
-			if ( is_user_logged_in() && geodir_listing_belong_to_current_user() ) {
+			if ( is_user_logged_in() && geodir_listing_belong_to_current_user( $gd_post->ID ) ) {
 				echo "<span class=\"supreme-btn supreme-btn-small supreme-edit-btn\">" . do_shortcode( '[gd_author_actions hide_delete="1"]' ) . "</span>";
 			}
 

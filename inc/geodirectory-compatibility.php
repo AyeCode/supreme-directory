@@ -166,7 +166,7 @@ function sd_feature_area_gd(){
         }
         echo do_shortcode($shortcode_content);
         if(!is_front_page()){
-            echo '<div class="home-more  h2"  id="sd-home-scroll" ><a href="#sd-home-scroll" class="text-white"><i class="fa fa-chevron-down"></i></a></div>';
+            echo '<div class="home-more  h2"  id="sd-home-scroll" ><a href="#sd-home-scroll" class="text-white" aria-label="' . esc_attr__( 'Main Content', 'supreme-directory' ) . '"><i class="fa fa-chevron-down"></i></a></div>';
         }
     }
 }
@@ -449,7 +449,11 @@ if(1){ ?><script><?php }?>
         });
 
         function sd_scroll_to_reviews() {
-            jQuery(".geodir-tab-head [href='#reviews']")[0].click();
+            if (jQuery(".geodir-tab-head [href='#reviews']").length) {
+                jQuery(".geodir-tab-head [href='#reviews']").trigger('click'); /* AUI */
+            } else {
+                jQuery('.geodir-tab-head [data-tab="#reviews"]').closest('dd').trigger('click');
+            }
 
             setTimeout(function() {
                 jQuery('html,body').animate({
