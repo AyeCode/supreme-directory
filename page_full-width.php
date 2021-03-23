@@ -14,10 +14,9 @@ $sidebar = 'pages';
 $dt_blog_sidebar_position = esc_attr(get_theme_mod('dt_blog_sidebar_position', DT_BLOG_SIDEBAR_POSITION));
 ?>
 <?php get_template_part('content-featured-area');?>
-    <section class="<?php if(get_theme_mod('dt_container_full', DT_CONTAINER_FULL)){echo 'container-fluid';}else{ echo "container";}?> py-0">
-
+    <div class="<?php if(get_theme_mod('dt_container_full', DT_CONTAINER_FULL)){echo 'container-fluid';}else{ echo "container";}?> py-0">
         <div class="row">
-            <div class="col pt-3">
+            <section class="col pt-3">
                 <div class="content-single">
                     <?php if (!have_posts()) : ?>
                         <div class="alert alert-warning">
@@ -40,9 +39,9 @@ $dt_blog_sidebar_position = esc_attr(get_theme_mod('dt_blog_sidebar_position', D
                     endwhile;
                     ?>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </div>
 
 
 <?php do_action('dt_page_after_main_content'); ?>
