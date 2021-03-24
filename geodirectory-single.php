@@ -3,14 +3,19 @@
 <?php do_action('dt_single_before_main_content'); ?>
 
 <?php
-$dt_enable_blog_sidebar = esc_attr(get_theme_mod('dt_enable_blog_sidebar', DT_ENABLE_BLOG_SIDEBAR));
-$dt_blog_sidebar_position = esc_attr(get_theme_mod('dt_blog_sidebar_position', DT_BLOG_SIDEBAR_POSITION));
+$dt_enable_gd_sidebar = esc_attr(get_theme_mod('dt_enable_gd_sidebar', DT_ENABLE_GD_SIDEBAR));
+$dt_gd_sidebar_position = esc_attr(get_theme_mod('dt_gd_sidebar_position', DT_GD_SIDEBAR_POSITION));
+$dt_gd_sidebar_position_mobile = esc_attr(get_theme_mod('dt_gd_sidebar_position_mobile', DT_GD_SIDEBAR_POSITION_MOBILE));
 
-if ($dt_enable_blog_sidebar == '1') {
-    $content_class = 'col-lg-8 col-md-9 border-right pt-3';
+if ( $dt_enable_gd_sidebar ) {
+    $content_class = 'col-lg-8 col-md-9 pt-3';
+    $content_class .= $dt_gd_sidebar_position == 'right' ? ' border-right' : ' border-left';
+    $content_class .= $dt_gd_sidebar_position == 'right' ? ' order-md-first' : ' order-md-last';
+    $content_class .= $dt_gd_sidebar_position_mobile == 'bottom' ? ' order-first' : ' order-last';
 } else {
     $content_class = 'col-lg-12';
 }
+
 ?>
 <?php get_template_part('content-featured-area');
 
@@ -30,16 +35,9 @@ if ($dt_enable_blog_sidebar == '1') {
         </div>
     </div>
 
-    <section class="<?php if(get_theme_mod('dt_container_full', DT_CONTAINER_FULL)){echo 'container-fluid';}else{ echo "container";}?> py-0">
+    <div class="<?php if(get_theme_mod('dt_container_full', DT_CONTAINER_FULL)){echo 'container-fluid';}else{ echo "container";}?> py-0">
         <div class="row">
-            <?php if ($dt_enable_blog_sidebar == '1' && $dt_blog_sidebar_position == 'left') { ?>
-                <div class="col-lg-4 col-md-3 pt-3">
-                    <div class="sidebar blog-sidebar page-sidebar">
-                        <?php dynamic_sidebar('sidebar-gd');?>
-                    </div>
-                </div>
-            <?php } ?>
-            <div class="<?php echo $content_class; ?>">
+            <section class="<?php echo $content_class; ?>">
                 <div class="content-single">
                     <?php if (!have_posts()) : ?>
                         <div class="alert-error">
@@ -57,16 +55,16 @@ if ($dt_enable_blog_sidebar == '1') {
                     endwhile;
                     ?>
                 </div>
-            </div>
-            <?php if ($dt_enable_blog_sidebar == '1' && $dt_blog_sidebar_position == 'right') { ?>
-                <div class="col-lg-4 col-md-3 pt-3">
+            </section>
+            <?php if ( $dt_enable_gd_sidebar ) { ?>
+                <aside class="col-lg-4 col-md-3 pt-3">
                     <div class="sidebar blog-sidebar page-sidebar">
                         <?php dynamic_sidebar('sidebar-gd');?>
                     </div>
-                </div>
+                </aside>
             <?php } ?>
         </div>
-    </section>
+    </div>
 
     <div class="fullwidth-sidebar-container">
         <div class="sidebar bottom-sidebar">

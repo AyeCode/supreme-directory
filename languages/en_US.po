@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Supreme Directory 2.0.0.12\n"
+"Project-Id-Version: Supreme Directory 2.1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 15:05+0530\n"
-"PO-Revision-Date: 2020-07-15 15:05+0530\n"
+"POT-Creation-Date: 2021-03-23 16:46+0000\n"
+"PO-Revision-Date: 2021-03-23 16:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: AyeCode Ltd <contact@ayecode.io>\n"
 "Language: en_US\n"
@@ -15,19 +15,19 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: archive.php:22 geodirectory-single.php:35 geodirectory.php:29 index.php:23
-#: page.php:13 page_full-width.php:20 single.php:20 woocommerce.php:20
+#: archive.php:8 geodirectory-single.php:44 geodirectory.php:29 index.php:24
+#: page.php:19 page_full-width.php:23 single.php:29 woocommerce.php:20
 msgid "Sorry, no results were found."
 msgstr ""
 
-#: archive.php:37 content.php:52 functions.php:509 index.php:38
+#: archive.php:23 content.php:52 functions.php:526 index.php:39 single.php:49
 msgid "Previous"
 msgstr ""
 
-#: archive.php:38 content.php:49 functions.php:510 index.php:39
+#: archive.php:24 content.php:49 functions.php:527 index.php:40 single.php:46
 msgid "Next"
 msgstr ""
 
@@ -36,37 +36,37 @@ msgstr ""
 msgid "%s's Profile"
 msgstr ""
 
-#: content-geodirectory-archive.php:47 content-geodirectory.php:41
+#: content-blog.php:16
+msgid "View Post"
+msgstr ""
+
+#: content-geodirectory-archive.php:46 content-geodirectory.php:32
 #: content.php:32
 msgid "Pages:"
 msgstr ""
 
-#: content-geodirectory-archive.php:55 content-geodirectory.php:49
+#: content-geodirectory-archive.php:54 content-geodirectory.php:40
 #: content.php:40
 msgid "Edit"
 msgstr ""
 
-#: content-geodirectory-archive.php:89
-msgid "SEARCH LISTINGS"
-msgstr ""
-
-#: content-geodirectory-archive.php:89
+#: content-geodirectory-archive.php:113
 msgid "SHOW LISTINGS"
 msgstr ""
 
-#: content-geodirectory-archive.php:89
+#: content-geodirectory-archive.php:114
 msgid "SHOW MAP"
 msgstr ""
 
-#: content.php:50
+#: content.php:50 single.php:47
 msgid "Next post:"
 msgstr ""
 
-#: content.php:53
+#: content.php:53 single.php:50
 msgid "Previous post:"
 msgstr ""
 
-#: functions.php:50
+#: functions.php:53
 #, php-format
 msgid ""
 "This theme was designed to work with the GeoDirectory plugin! <a href='%s' "
@@ -121,21 +121,25 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: functions.php:436
+#: functions.php:447
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: functions.php:592
+#: functions.php:504 inc/geodirectory-compatibility.php:169
+msgid "Main Content"
+msgstr ""
+
+#: functions.php:609
 msgid "WordPress"
 msgstr ""
 
-#: functions.php:593
+#: functions.php:610
 #, php-format
 msgid "Copyright &copy; %1$s %2$s %3$s Theme %4$s"
 msgstr ""
 
-#: functions.php:594
+#: functions.php:611
 #, php-format
 msgid " - Powered by %s."
 msgstr ""
@@ -164,25 +168,23 @@ msgstr ""
 msgid "Show:"
 msgstr ""
 
-#: template-parts/header/header-single-top.php:19
+#: template-parts/header/header-single-top.php:17
 msgid "Claim Me"
 msgstr ""
 
-#: template-parts/header/header-single-top.php:36
+#: template-parts/header/header-single-top.php:34
 msgid "Verified Owner"
 msgstr ""
 
-#: template-parts/header/header-single-top.php:124
+#: template-parts/header/header-single-top.php:123
 msgid "Write a Review"
 msgstr ""
 
-#: template-parts/header/header-single-top.php:146
-#: template-parts/header/header-single-top.php:149
+#: template-parts/header/header-single-top.php:145
 msgid "Share on Facebook"
 msgstr ""
 
-#: template-parts/header/header-single-top.php:147
-#: template-parts/header/header-single-top.php:150
+#: template-parts/header/header-single-top.php:148
 msgid "Share on Twitter"
 msgstr ""
 
