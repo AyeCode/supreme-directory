@@ -522,7 +522,7 @@ if(1){ ?><script><?php }?>
                 if ($sd_sidebar_position == 'left') {
                     $offset = 'ml-n5';
                 }
-                jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="Drag to resize" data-toggle="tooltip"  style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;z-index: 1050;"><i class="fas fa-arrows-alt-h"></i></span>');
+                jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="<?php echo esc_attr__( 'Drag to resize', 'supreme-directory' ); ?>" data-toggle="tooltip" style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;z-index: 1050;"><i class="fas fa-arrows-alt-h"></i></span>');
                 sd_position_archive_resizer($listings_container);
             }
 

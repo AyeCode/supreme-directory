@@ -31,6 +31,9 @@ No, this is optional but recommended.
 
 == Changelog ==
 
+= 2.1.0.2 =
+* Unable to translate "Drag to resize" text - FIXED
+
 = 2.1.0.1 =
 * Archive resizer not displaying due to enqueue too early - FIXED
 * GD category widget loses styles on CPT change in featured area - FIXED
