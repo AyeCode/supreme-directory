@@ -35,7 +35,7 @@ No, this is optional but recommended.
 * Unable to translate "Drag to resize" text - FIXED
 
 = 2.1.0.1 =
-* Archive resize not displaying due to enqueue too early - FIXED
+* Archive resizer not displaying due to enqueue too early - FIXED
 * GD category widget loses styles on CPT change in featured area - FIXED
 * Featured area on homepage not full height - FIXED
 * Paralax image JS sometimes firing too early - FIXED
