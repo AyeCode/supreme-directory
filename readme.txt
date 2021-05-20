@@ -2,8 +2,8 @@
 Contributors: paoltaia, stiofansisland, ayecode
 Tags: food-and-drink, blog, one-column, two-columns, three-columns, left-sidebar, right-sidebar, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, translation-ready
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 2.1.0.1
+Tested up to: 5.8
+Stable tag: 2.1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,7 @@ No, this is optional but recommended.
 
 = 2.1.0.2 =
 * Unable to translate "Drag to resize" text - FIXED
+* Author page mixing "row" class - FIXED
 
 = 2.1.0.1 =
 * Archive resizer not displaying due to enqueue too early - FIXED

@@ -23,7 +23,7 @@ $full_image_url = SD_DEFAULT_FEATURED_IMAGE;
 
                 <div class="container">
 
-                    <div class="content-box content-archive content-author">
+                    <div class="content-box content-archive content-author row">
 
 
                         <?php
