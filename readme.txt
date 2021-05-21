@@ -31,6 +31,9 @@ No, this is optional but recommended.
 
 == Changelog ==
 
+= 2.1.0.3 =
+* Author page, author image misaligned - FIXED
+
 = 2.1.0.2 =
 * Unable to translate "Drag to resize" text - FIXED
 * Author page mixing "row" class - FIXED
