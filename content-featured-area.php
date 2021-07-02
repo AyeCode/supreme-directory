@@ -17,6 +17,14 @@ if(is_home()){
 	}
 }
 
+if ( function_exists( 'geodir_is_page' ) && geodir_is_page( 'search' ) && isset( $pfp_post->post_type ) ) {
+	
+	$search_page_id = geodir_search_page_id();
+	if ( $search_page_id ) {
+		$pfp_post = get_post($search_page_id);
+	}
+}
+
 if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function_exists( 'is_buddypress' ) ) && ! get_post_meta( $pfp_post->ID, 'sd_remove_head', true ) ) {
 	$pid        = $pfp_post->ID;
 	$jumbotron_size = '';
