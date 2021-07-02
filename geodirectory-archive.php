@@ -14,6 +14,7 @@ function sd_add_gd_archive_class($classes) {
 get_header();
 
 do_action('dt_page_before_main_content');
+get_template_part('content-featured-area');
 
 global $dt_blog_sidebar_position,$sd_sidebar_class;
 $dt_blog_sidebar_position = esc_attr(get_theme_mod('dt_blog_sidebar_position', DT_BLOG_SIDEBAR_POSITION));

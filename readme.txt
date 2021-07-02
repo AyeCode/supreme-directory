@@ -33,6 +33,7 @@ No, this is optional but recommended.
 
 = 2.1.0.3 =
 * Author page, author image misaligned - FIXED
+* featured area background image issue for search page - FIXED
 
 = 2.1.0.2 =
 * Unable to translate "Drag to resize" text - FIXED
