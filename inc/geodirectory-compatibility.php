@@ -420,6 +420,7 @@ if(1){ ?><script><?php }?>
             jQuery("#showMap").click(function() {
                 jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').removeClass('d-none');
                 jQuery('#sd-archive-map,#showMap').addClass('d-none');
+                if(!jQuery(this).hasClass("geodir-map-rendered")){window.setTimeout(function(){if(jQuery.goMap.map){if(window.gdMaps=="osm"){jQuery.goMap.map._onResize();jQuery.goMap.map.invalidateSize()}else google.maps.event.trigger(jQuery.goMap.map,"resize");if(typeof keepBounds!="undefined"&&keepBounds){jQuery.goMap.map.fitBounds(keepBounds);setZoom=jQuery.goMap.map.getZoom();if(setZoom>13){jQuery.goMap.map.setZoom(13)}}}},100);}jQuery(this).addClass("geodir-map-rendered");
             });
 
             jQuery("#hideMap").click(function() {
@@ -444,8 +445,6 @@ if(1){ ?><script><?php }?>
                 e.preventDefault();
                 sd_scroll_to_reviews();
             });
-
-
         });
 
         function sd_scroll_to_reviews() {
