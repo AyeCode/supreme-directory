@@ -1,5 +1,6 @@
 <?php
-global $post,$pid;
+global $post, $pid;
+
 if ( empty( $pfp_post ) ) {
 	$pfp_post = $post;
 }
@@ -10,23 +11,24 @@ if ( function_exists( 'wc_get_page_id' ) && is_shop() ) {
 }
 
 // if blog page
-if(is_home()){
-	$pfp_post = get_option('page_for_posts');
-	if($pfp_post){
-		$pfp_post = get_post($pfp_post);
+if ( is_home() ) {
+	$pfp_post = (int) get_option( 'page_for_posts' );
+
+	if ( $pfp_post ) {
+		$pfp_post = get_post( $pfp_post );
 	}
 }
 
 if ( function_exists( 'geodir_is_page' ) && geodir_is_page( 'search' ) && isset( $pfp_post->post_type ) ) {
-	
-	$search_page_id = geodir_search_page_id();
+	$search_page_id = (int) geodir_search_page_id();
+
 	if ( $search_page_id ) {
-		$pfp_post = get_post($search_page_id);
+		$pfp_post = get_post( $search_page_id );
 	}
 }
 
-if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function_exists( 'is_buddypress' ) ) && ! get_post_meta( $pfp_post->ID, 'sd_remove_head', true ) ) {
-	$pid        = $pfp_post->ID;
+if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function_exists( 'is_buddypress' ) ) && ! empty( $pfp_post ) && ! get_post_meta( $pfp_post->ID, 'sd_remove_head', true ) ) {
+	$pid = $pfp_post->ID;
 	$jumbotron_size = '';
 	$featured_image = '';
 	$full_height = '';
@@ -84,12 +86,10 @@ if ( ( ( function_exists( 'is_buddypress' ) && ! is_buddypress() ) || ! function
 		/* <![CDATA[ */
 		(function() {
 			var img = new Image(), x = document.getElementById('sd-featured-img');
-
 			img.onload = function() {
 				x.style.backgroundImage = "url('" + img.src + "')";
 				x.classList.add("sd-fade-in");
 			};
-
 			img.src = "<?php echo esc_url( $featured_image ); ?>";
 		})();
 		/* ]]> */

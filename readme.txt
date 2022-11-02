@@ -2,7 +2,7 @@
 Contributors: paoltaia, stiofansisland, ayecode
 Tags: food-and-drink, blog, one-column, two-columns, three-columns, left-sidebar, right-sidebar, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, translation-ready
 Requires at least: 4.0
-Tested up to: 5.8
+Tested up to: 6.1
 Stable tag: 2.1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,6 +30,9 @@ All add-ons play well with Supreme and we made sure that BuddyPress would be com
 No, this is optional but recommended.
 
 == Changelog ==
+
+= 2.1.1 =
+* Toggle view map not showing map properly on small screen - FIXED
 
 = 2.1.0.3 =
 * Author page, author image misaligned - FIXED
