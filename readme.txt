@@ -33,6 +33,7 @@ No, this is optional but recommended.
 
 = 2.1.1 =
 * Toggle view map not showing map properly on small screen - FIXED
+* jQuery 3.5.x compatibility changes - FIXED
 
 = 2.1.0.3 =
 * Author page, author image misaligned - FIXED

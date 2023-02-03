@@ -413,22 +413,22 @@ if(1){ ?><script><?php }?>
                 if (jQuery(".featured-area .geodir-cat-list-tax").length) {
                     var postType = jQuery('.featured-area .search_by_post').val();
                     jQuery(".geodir-cat-list-tax").val(postType);
-                    jQuery(".geodir-cat-list-tax").change();
+                    jQuery(".geodir-cat-list-tax").trigger('change');
                 }
             });
 
-            jQuery("#showMap").click(function() {
+            jQuery("#showMap").on('click', function() {
                 jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').removeClass('d-none');
                 jQuery('#sd-archive-map,#showMap').addClass('d-none');
-                if(!jQuery(this).hasClass("geodir-map-rendered")){window.setTimeout(function(){if(jQuery.goMap.map){if(window.gdMaps=="osm"){jQuery.goMap.map._onResize();jQuery.goMap.map.invalidateSize()}else google.maps.event.trigger(jQuery.goMap.map,"resize");if(typeof keepBounds!="undefined"&&keepBounds){jQuery.goMap.map.fitBounds(keepBounds);setZoom=jQuery.goMap.map.getZoom();if(setZoom>13){jQuery.goMap.map.setZoom(13)}}}},100);}jQuery(this).addClass("geodir-map-rendered");
+                if(!jQuery(this).hasClass("geodir-map-rendered")){window.setTimeout(function(){if(jQuery.goMap.map){<?php if ( geodir_is_page( 'single' ) ) { ?>var _setZoom=jQuery.goMap.map.getZoom();<?php } ?>if(window.gdMaps=="osm"){jQuery.goMap.map._onResize();jQuery.goMap.map.invalidateSize()}else google.maps.event.trigger(jQuery.goMap.map,"resize");if(typeof keepBounds!="undefined"&&keepBounds){jQuery.goMap.map.fitBounds(keepBounds);setZoom=jQuery.goMap.map.getZoom();<?php if ( geodir_is_page( 'single' ) ) { ?>if(_setZoom>0&&_setZoom<=13){setZoom=_setZoom;jQuery.goMap.map.setZoom(_setZoom)}<?php } ?>if(setZoom>13){jQuery.goMap.map.setZoom(13)}}}},100);}jQuery(this).addClass("geodir-map-rendered");
             });
 
-            jQuery("#hideMap").click(function() {
+            jQuery("#hideMap").on("click", function() {
                 jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').addClass('d-none');
                 jQuery('#sd-archive-map,#showMap').removeClass('d-none');
             });
 
-            jQuery("#showSearch").click(function() {
+            jQuery("#showSearch").on("click", function() {
                 jQuery("body").toggleClass('sd-show-search');
                 if (typeof geodir_reposition_compass == 'function') {
                     geodir_reposition_compass();
@@ -436,7 +436,7 @@ if(1){ ?><script><?php }?>
             });
 
             if (jQuery(".sd-detail-cta a.dt-btn").length) {
-                jQuery(".sd-detail-cta a.dt-btn").click(function() {
+                jQuery(".sd-detail-cta a.dt-btn").on("click", function() {
                     sd_scroll_to_reviews();
                 });
             }
@@ -503,7 +503,7 @@ if(1){ ?><script><?php }?>
                 }
             });
 
-            jQuery("#sd-home-scroll").click(function(event) {
+            jQuery("#sd-home-scroll").on("click", function(event) {
                 event.preventDefault();
                 jQuery('html, body').animate({
                     scrollTop: jQuery(".featured-area").outerHeight()
@@ -542,7 +542,7 @@ if(1){ ?><script><?php }?>
 
             var $sd_set_archive_width = false;
 // function to adjust width of archive elements
-            jQuery('body.geodir-fixed-archive .sd-archive-resizer').mousedown(function(e) {console.log('down');
+            jQuery('body.geodir-fixed-archive .sd-archive-resizer').on("mousedown",function(e) {console.log('down');
                 e.preventDefault();
                 $left_container = $container;
                 $rigth_container = $map_container;
@@ -551,7 +551,7 @@ if(1){ ?><script><?php }?>
                     $left_container = $map_container;
                     $rigth_container = $container;
                 }
-                jQuery(document).mousemove(function(e) {
+                jQuery(document).on("mousemove",function(e) {
                     jQuery($left_container).removeClass('col-md-7 col-12').addClass('col').css("width", e.pageX + 2).css("max-width", e.pageX + 2).css("flex-basis", 'auto');
                     jQuery($rigth_container).removeClass('col-md-5 col-12').addClass('col');
                     sd_position_archive_resizer($container);
@@ -559,8 +559,8 @@ if(1){ ?><script><?php }?>
                 });
             });
 
-            jQuery(document).mouseup(function(e) {
-                jQuery(document).unbind('mousemove');
+            jQuery(document).on("mouseup",function(e) {
+                jQuery(document).off('mousemove');
 
                 // set the value if we have localstorage
                 if ($sd_set_archive_width && geodir_is_localstorage()) {console.log('up');
