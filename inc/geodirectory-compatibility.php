@@ -396,189 +396,186 @@ function gd_sd_header_extra_class( $class ){
 }
 add_filter('dt_header_extra_class','gd_sd_header_extra_class');
 
-
 // JS
-function gd_sd_enqueue_script(){
-    
-    wp_add_inline_script( 'geodir', gd_sd_script() ); 
+function gd_sd_enqueue_script() {
+	wp_add_inline_script( 'geodir', gd_sd_script() ); 
 }
-//add_action('wp_enqueue_scripts', 'gd_sd_enqueue_script');
-add_action('wp_footer', 'gd_sd_enqueue_script');
+add_action( 'wp_enqueue_scripts', 'gd_sd_enqueue_script', 99 );
 
-function gd_sd_script(){
-//ob_start();
-if(1){ ?><script><?php }?>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            jQuery("body").on("geodir_setup_search_form", function() {
-                if (jQuery(".featured-area .geodir-cat-list-tax").length) {
-                    var postType = jQuery('.featured-area .search_by_post').val();
-                    jQuery(".geodir-cat-list-tax").val(postType);
-                    jQuery(".geodir-cat-list-tax").trigger('change');
-                }
-            });
+function gd_sd_script() {
+ob_start();
 
-            jQuery("#showMap").on('click', function() {
-                jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').removeClass('d-none');
-                jQuery('#sd-archive-map,#showMap').addClass('d-none');
-                if(!jQuery(this).hasClass("geodir-map-rendered")){window.setTimeout(function(){if(jQuery.goMap.map){<?php if ( geodir_is_page( 'single' ) ) { ?>var _setZoom=jQuery.goMap.map.getZoom();<?php } ?>if(window.gdMaps=="osm"){jQuery.goMap.map._onResize();jQuery.goMap.map.invalidateSize()}else google.maps.event.trigger(jQuery.goMap.map,"resize");if(typeof keepBounds!="undefined"&&keepBounds){jQuery.goMap.map.fitBounds(keepBounds);setZoom=jQuery.goMap.map.getZoom();<?php if ( geodir_is_page( 'single' ) ) { ?>if(_setZoom>0&&_setZoom<=13){setZoom=_setZoom;jQuery.goMap.map.setZoom(_setZoom)}<?php } ?>if(setZoom>13){jQuery.goMap.map.setZoom(13)}}}},100);}jQuery(this).addClass("geodir-map-rendered");
-            });
+if ( 0 ) { ?><script><?php } ?>
+	document.addEventListener("DOMContentLoaded", function(event) {
+		jQuery("body").on("geodir_setup_search_form", function() {
+			if (jQuery(".featured-area .geodir-cat-list-tax").length) {
+				var postType = jQuery('.featured-area .search_by_post').val();
+				jQuery(".geodir-cat-list-tax").val(postType);
+				jQuery(".geodir-cat-list-tax").trigger('change');
+			}
+		});
 
-            jQuery("#hideMap").on("click", function() {
-                jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').addClass('d-none');
-                jQuery('#sd-archive-map,#showMap').removeClass('d-none');
-            });
+		jQuery("#showMap").on('click', function() {
+			jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').removeClass('d-none');
+			jQuery('#sd-archive-map,#showMap').addClass('d-none');
+			if(!jQuery(this).hasClass("geodir-map-rendered")){window.setTimeout(function(){if(jQuery.goMap.map){<?php if ( geodir_is_page( 'single' ) ) { ?>var _setZoom=jQuery.goMap.map.getZoom();<?php } ?>if(window.gdMaps=="osm"){jQuery.goMap.map._onResize();jQuery.goMap.map.invalidateSize()}else google.maps.event.trigger(jQuery.goMap.map,"resize");if(typeof keepBounds!="undefined"&&keepBounds){jQuery.goMap.map.fitBounds(keepBounds);setZoom=jQuery.goMap.map.getZoom();<?php if ( geodir_is_page( 'single' ) ) { ?>if(_setZoom>0&&_setZoom<=13){setZoom=_setZoom;jQuery.goMap.map.setZoom(_setZoom)}<?php } ?>if(setZoom>13){jQuery.goMap.map.setZoom(13)}}}},100);}jQuery(this).addClass("geodir-map-rendered");
+		});
 
-            jQuery("#showSearch").on("click", function() {
-                jQuery("body").toggleClass('sd-show-search');
-                if (typeof geodir_reposition_compass == 'function') {
-                    geodir_reposition_compass();
-                }
-            });
+		jQuery("#hideMap").on("click", function() {
+			jQuery('#sd-sidebar-left,#sd-sidebar-right,#hideMap').addClass('d-none');
+			jQuery('#sd-archive-map,#showMap').removeClass('d-none');
+		});
 
-            if (jQuery(".sd-detail-cta a.dt-btn").length) {
-                jQuery(".sd-detail-cta a.dt-btn").on("click", function() {
-                    sd_scroll_to_reviews();
-                });
-            }
+		jQuery("#showSearch").on("click", function() {
+			jQuery("body").toggleClass('sd-show-search');
+			if (typeof geodir_reposition_compass == 'function') {
+				geodir_reposition_compass();
+			}
+		});
 
-            jQuery(".sd-detail-cta .gd-write-a-review-badge, .sd-ratings .geodir-post-rating .gd-list-rating-link").on('click', function(e) {
-                e.preventDefault();
-                sd_scroll_to_reviews();
-            });
-        });
+		if (jQuery(".sd-detail-cta a.dt-btn").length) {
+			jQuery(".sd-detail-cta a.dt-btn").on("click", function() {
+				sd_scroll_to_reviews();
+			});
+		}
 
-        function sd_scroll_to_reviews() {
-            if (jQuery(".geodir-tab-head [href='#reviews']").length) {
-                jQuery(".geodir-tab-head [href='#reviews']").trigger('click'); /* AUI */
-            } else {
-                jQuery('.geodir-tab-head [data-tab="#reviews"]').closest('dd').trigger('click');
-            }
+		jQuery(".sd-detail-cta .gd-write-a-review-badge, .sd-ratings .geodir-post-rating .gd-list-rating-link").on('click', function(e) {
+			e.preventDefault();
+			sd_scroll_to_reviews();
+		});
+	});
 
-            setTimeout(function() {
-                jQuery('html,body').animate({
-                    scrollTop: jQuery('#comments #respond').offset().top
-                }, 'slow');
-                jQuery('#comments #respond #comment').focus();
-            }, 200);
-        }
+	function sd_scroll_to_reviews() {
+		if (jQuery(".geodir-tab-head [href='#reviews']").length) {
+			jQuery(".geodir-tab-head [href='#reviews']").trigger('click'); /* AUI */
+		} else {
+			jQuery('.geodir-tab-head [data-tab="#reviews"]').closest('dd').trigger('click');
+		}
 
-        var $sd_sidebar_position = '';
-        (function() {
-            // set the sidebar position var
-            if (jQuery('body.sd-right-sidebar').length) {
-                $sd_sidebar_position = 'right';
-            } else {
-                $sd_sidebar_position = 'left';
-            }
+		setTimeout(function() {
+			jQuery('html,body').animate({
+				scrollTop: jQuery('#comments #respond').offset().top
+			}, 'slow');
+			jQuery('#comments #respond #comment').focus();
+		}, 200);
+	}
 
-            document.addEventListener("DOMContentLoaded", function() {
-                if (jQuery(".featured-img").length) {
-                    var windowHeight = screen.height;
-                    var parallax = document.querySelectorAll(".featured-img"),
-                        speed = 0.6;
-                    var bPos = jQuery(".featured-img").css("background-position");
-                    var arrBpos = bPos.split(' ');
-                    var originalBpos = arrBpos[1];
-                    var fetHeight = parseInt(jQuery(".featured-area").css("height"));
-                    var fetAreHeight = jQuery(".featured-area").offset().top + fetHeight;
+	var $sd_sidebar_position = '';
 
-                    window.onscroll = function() {
-                        var f = 0;
-                        [].slice.call(parallax).forEach(function(el, i) {
-                            if (f > 1) {
-                                return;
-                            }
-                            var windowYOffset = window.pageYOffset;
-                            originalBpos = parseInt(originalBpos);
-                            var perc = windowYOffset / fetAreHeight + (originalBpos / 100);
-                            //"50% calc("+originalBpos+" - " + (windowYOffset * speed) + "px)"
-                            parallaxPercent = 100 * perc;
-                            if (parallaxPercent > 100) {
-                                parallaxPercent = 100;
-                            }
-                            jQuery(el).css("background-position", "50% " + parallaxPercent + "%");
-                            f++;
-                        });
-                    };
-                }
-            });
+	(function() {
+		// set the sidebar position var
+		if (jQuery('body.sd-right-sidebar').length) {
+			$sd_sidebar_position = 'right';
+		} else {
+			$sd_sidebar_position = 'left';
+		}
 
-            jQuery("#sd-home-scroll").on("click", function(event) {
-                event.preventDefault();
-                jQuery('html, body').animate({
-                    scrollTop: jQuery(".featured-area").outerHeight()
-                }, 1000);
-            });
+		document.addEventListener("DOMContentLoaded", function() {
+			if (jQuery(".featured-img").length) {
+				var windowHeight = screen.height;
+				var parallax = document.querySelectorAll(".featured-img"),
+					speed = 0.6;
+				var bPos = jQuery(".featured-img").css("background-position");
+				var arrBpos = bPos.split(' ');
+				var originalBpos = arrBpos[1];
+				var fetHeight = parseInt(jQuery(".featured-area").css("height"));
+				var fetAreHeight = jQuery(".featured-area").offset().top + fetHeight;
 
-            sd_insert_archive_resizer('.sd-archive-listings','.sd-archive-map');
-        })();
+				window.onscroll = function() {
+					var f = 0;
+					[].slice.call(parallax).forEach(function(el, i) {
+						if (f > 1) {
+							return;
+						}
+						var windowYOffset = window.pageYOffset;
+						originalBpos = parseInt(originalBpos);
+						var perc = windowYOffset / fetAreHeight + (originalBpos / 100);
+						//"50% calc("+originalBpos+" - " + (windowYOffset * speed) + "px)"
+						parallaxPercent = 100 * perc;
+						if (parallaxPercent > 100) {
+							parallaxPercent = 100;
+						}
+						jQuery(el).css("background-position", "50% " + parallaxPercent + "%");
+						f++;
+					});
+				};
+			}
+		});
 
-        // insert archive page size adjuster
-        function sd_insert_archive_resizer($listings_container,$map_container) {
-            $screen_width = screen.width;
-            if (jQuery($map_container).length && $screen_width > 992) {
-                $offset = 'mr-n5';
-                if ($sd_sidebar_position == 'left') {
-                    $offset = 'ml-n5';
-                }
-                jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="<?php echo esc_attr__( 'Drag to resize', 'supreme-directory' ); ?>" data-toggle="tooltip" style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;z-index: 1050;"><i class="fas fa-arrows-alt-h"></i></span>');
-                sd_position_archive_resizer($listings_container);
-            }
+		jQuery("#sd-home-scroll").on("click", function(event) {
+			event.preventDefault();
+			jQuery('html, body').animate({
+				scrollTop: jQuery(".featured-area").outerHeight()
+			}, 1000);
+		});
 
-            sd_reposition_archive($listings_container,$map_container);
-        }
+		sd_insert_archive_resizer('.sd-archive-listings','.sd-archive-map');
+	})();
 
-        function sd_position_archive_resizer($container) {
-            var $offset = 21;
-            if ($sd_sidebar_position == 'left') {
-                $container = '.sd-sidebar';
-                $offset = 13;
-            }
-            $width = jQuery($container).outerWidth() - $offset;
-            jQuery('.sd-archive-resizer').css('left', $width);
-        }
+	// insert archive page size adjuster
+	function sd_insert_archive_resizer($listings_container,$map_container) {
+		$screen_width = screen.width;
+		if (jQuery($map_container).length && $screen_width > 992) {
+			$offset = 'mr-n5';
+			if ($sd_sidebar_position == 'left') {
+				$offset = 'ml-n5';
+			}
+			jQuery($listings_container).prepend('<span class="sd-archive-resizer '+$offset+' iconbox iconsmall fill rounded-circle bg-primary text-white shadow border-0 c-pointer" title="<?php echo esc_attr__( 'Drag to resize', 'supreme-directory' ); ?>" data-toggle="tooltip" style="position: sticky;top: 50vh;z-index: 1;width: 30px;height: 30px;line-height: 30px;z-index: 1050;"><i class="fas fa-arrows-alt-h"></i></span>');
+			sd_position_archive_resizer($listings_container);
+		}
 
-        function sd_reposition_archive($container,$map_container) {
+		sd_reposition_archive($listings_container,$map_container);
+	}
 
-            var $sd_set_archive_width = false;
-// function to adjust width of archive elements
-            jQuery('body.geodir-fixed-archive .sd-archive-resizer').on("mousedown",function(e) {console.log('down');
-                e.preventDefault();
-                $left_container = $container;
-                $rigth_container = $map_container;
-                // var $container = '.entry-content';
-                if ($sd_sidebar_position == 'left') {
-                    $left_container = $map_container;
-                    $rigth_container = $container;
-                }
-                jQuery(document).on("mousemove",function(e) {
-                    jQuery($left_container).removeClass('col-md-7 col-12').addClass('col').css("width", e.pageX + 2).css("max-width", e.pageX + 2).css("flex-basis", 'auto');
-                    jQuery($rigth_container).removeClass('col-md-5 col-12').addClass('col');
-                    sd_position_archive_resizer($container);
-                    $sd_set_archive_width = true;
-                });
-            });
+	function sd_position_archive_resizer($container) {
+		var $offset = 21;
+		if ($sd_sidebar_position == 'left') {
+			$container = '.sd-sidebar';
+			$offset = 13;
+		}
+		$width = jQuery($container).outerWidth() - $offset;
+		jQuery('.sd-archive-resizer').css('left', $width);
+	}
 
-            jQuery(document).on("mouseup",function(e) {
-                jQuery(document).off('mousemove');
+	function sd_reposition_archive($container,$map_container) {
+		var $sd_set_archive_width = false;
+		// function to adjust width of archive elements
+		jQuery('body.geodir-fixed-archive .sd-archive-resizer').on("mousedown",function(e) {console.log('down');
+			e.preventDefault();
+			$left_container = $container;
+			$rigth_container = $map_container;
+			// var $container = '.entry-content';
+			if ($sd_sidebar_position == 'left') {
+				$left_container = $map_container;
+				$rigth_container = $container;
+			}
+			jQuery(document).on("mousemove",function(e) {
+				jQuery($left_container).removeClass('col-md-7 col-12').addClass('col').css("width", e.pageX + 2).css("max-width", e.pageX + 2).css("flex-basis", 'auto');
+				jQuery($rigth_container).removeClass('col-md-5 col-12').addClass('col');
+				sd_position_archive_resizer($container);
+				$sd_set_archive_width = true;
+			});
+		});
 
-                // set the value if we have localstorage
-                if ($sd_set_archive_width && geodir_is_localstorage()) {console.log('up');
-                    // var $container = '.entry-content';
-                    var $offset = 21;
-                    if ($sd_sidebar_position == 'left') {
-                        $container = '.sd-sidebar';
-                        $offset = 13;
-                    }
-                    $width = jQuery('body.geodir-fixed-archive ' + $container).outerWidth() - $offset;
-                    localStorage.setItem('sd_archive_width', $width);
-                    window.dispatchEvent(new Event('resize')); // so map tiles fill in
-                }
-            });
-        }
+		jQuery(document).on("mouseup",function(e) {
+			jQuery(document).off('mousemove');
 
-        <?php if(1){ ?></script><?php }
+			// set the value if we have localstorage
+			if ($sd_set_archive_width && geodir_is_localstorage()) {console.log('up');
+				// var $container = '.entry-content';
+				var $offset = 21;
+				if ($sd_sidebar_position == 'left') {
+					$container = '.sd-sidebar';
+					$offset = 13;
+				}
+				$width = jQuery('body.geodir-fixed-archive ' + $container).outerWidth() - $offset;
+				localStorage.setItem('sd_archive_width', $width);
+				window.dispatchEvent(new Event('resize')); // so map tiles fill in
+			}
+		});
+	}
 
-//    return ob_get_clean();
-    
+	<?php if ( 0 ) { ?></script><?php }
+
+	return ob_get_clean();
 }
