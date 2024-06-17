@@ -1,17 +1,14 @@
 <?php
-global $preview, $gd_post;
+global $preview, $aui_bs5, $gd_post;
 do_action( 'sd-detail-details-before' ); ?>
 <div class="sd-detail-details  <?php if(get_theme_mod('dt_container_full', DT_CONTAINER_FULL)){echo 'container-fluid';}else{ echo "container";}?> ">
 	<div class="row">
 		<div class="sd-detail-author col col-md-2 text-center">
 			<?php
-
-			global $gd_post;
 			$is_owned     = false;
 			$author_link  = do_shortcode( '[gd_post_meta key="post_author" show="value"]' );
 			$author_id   = isset( $gd_post->post_author ) ? absint( $gd_post->post_author ) : '0';
 			$author_image = get_avatar( get_the_author_meta( 'email',$author_id ), 100, 'mm', '', array( 'class' => "author_avatar rounded-circle shadow" ) );
-
 
 			if ( ! $author_link && function_exists( 'geodir_claim_show_claim_link' ) && geodir_claim_show_claim_link( $gd_post->ID ) ) {
 				$author_name  = __( 'Claim Me', 'supreme-directory' );
@@ -31,7 +28,7 @@ do_action( 'sd-detail-details-before' ); ?>
 			if ( function_exists( 'geodir_claim_show_claim_link' ) && GeoDir_Claim_Post::is_claimed( $gd_post->ID ) ) {
 				$is_owned     = true;
 				?>
-				<span class="fa-stack sd-verified-badge position-absolute mt-3 ml-n2 h4" data-toggle="tooltip" title="<?php _e( 'Verified Owner', 'supreme-directory' ); ?>">
+				<span class="fa-stack sd-verified-badge position-absolute mt-3 ml-n2 h4" <?php echo ( $aui_bs5 ? 'data-bs-toggle="tooltip"' : 'data-toggle="tooltip"' ); ?> title="<?php _e( 'Verified Owner', 'supreme-directory' ); ?>">
                                 <i class="fas fa-circle fa-inverse position-absolute"></i>
                                 <i class="fas fa-check-circle position-absolute text-success"></i>
 				</span>
