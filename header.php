@@ -10,18 +10,23 @@
 
 <body <?php body_class(); ?>>
 <?php
-if(function_exists('wp_body_open')){wp_body_open();}
-do_action('dt_before_header');
+global $aui_bs5;
 
-$enable_header_top = esc_attr(get_theme_mod('dt_enable_header_top', DT_ENABLE_HEADER_TOP));
-if ($enable_header_top == '1') {
+if ( function_exists( 'wp_body_open' ) ) {
+	wp_body_open();
+}
+do_action( 'dt_before_header' );
+
+$enable_header_top = get_theme_mod( 'dt_enable_header_top', DT_ENABLE_HEADER_TOP );
+
+if ( $enable_header_top == '1' ) {
 	$extra_class = 'dt-header-top-enabled';
 } else {
 	$extra_class = '';
 }
 ?>
-<header id="site-header" class="site-header <?php echo apply_filters('dt_header_extra_class', $extra_class); ?> <?php echo esc_attr( get_theme_mod('dt_header_shadow', DT_HEADER_SHADOW) ); ?>" role="banner" style="<?php echo dt_header_image(); ?>">
-	<nav class="navbar navbar-expand-lg navbar-dark navbar-multi-sub-menus" style="z-index: 1025;">
+<header id="site-header" class="site-header <?php echo esc_attr( apply_filters( 'dt_header_extra_class', $extra_class ) ); ?> <?php echo esc_attr( get_theme_mod( 'dt_header_shadow', DT_HEADER_SHADOW ) ); ?>" role="banner" style="<?php echo esc_attr( dt_header_image() ); ?>">
+	<nav class="navbar navbar-expand-lg navbar-dark navbar-multi-sub-menus" style="z-index:1025;">
 		<?php
 		/**
 		 * This action is called before the site logo wrapper.
@@ -62,7 +67,7 @@ if ($enable_header_top == '1') {
 				</hgroup>
 			<?php endif; ?>
 		<?php endif; ?>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" <?php echo ( $aui_bs5 ? 'data-bs-toggle="collapse" data-bs-target="#primary-nav"' : 'data-toggle="collapse" data-target="#primary-nav"' ); ?> aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
